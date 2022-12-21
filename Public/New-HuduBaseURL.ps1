@@ -16,7 +16,7 @@ function New-HuduBaseURL {
 	if ($script:Int_HuduAPIKey) {
 		[version]$Version = (Get-HuduAppInfo).version
 		if ($Version -lt $script:HuduRequiredVersion) {
-			Write-Host "A connection error occured or Hudu version is below $script:HuduRequiredVersion" -foregroundcolor yellow
+			Write-Host "A connection error occured or Hudu version is below $script:HuduRequiredVersion ($Version)" -foregroundcolor yellow
 		}
 	}
 }

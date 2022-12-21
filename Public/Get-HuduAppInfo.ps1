@@ -5,11 +5,11 @@ function Get-HuduAppInfo {
     
         $HuduAPIKey = Get-HuduApiKey
         $HuduBaseURL = Get-HuduBaseURL
-	
-        $version = Invoke-RestMethod -method get -uri ($HuduBaseURL + "/api/v1/api_info") `
-            -headers @{'x-api-key' = (New-Object PSCredential "user", $HuduAPIKey).GetNetworkCredential().Password; } `
-            -ContentType 'application/json'
-		
+
+        $CREDS = (New-Object PSCredential 'user',$HuduAPIKey).GetNetworkCredential().Password
+        $HEADERS = @{'x-api-key'=$CREDS}
+        $Version = Invoke-RestMethod -Method GET -URI "$($HuduBaseURL)/api/v1/api_info" -Headers $HEADERS -ContentType 'application/json'
+
 
     } catch {
         $version = @{
